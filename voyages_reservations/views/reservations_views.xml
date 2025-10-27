@@ -1,0 +1,44 @@
+<odoo>
+    <record id="action_reservation" model="ir.actions.act_window">
+        <field name="name">Réservations</field>
+        <field name="res_model">voyages.reservation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="view_reservation_tree" model="ir.ui.view">
+        <field name="name">reservation.tree</field>
+        <field name="model">voyages.reservation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="voyage_id"/>
+                <field name="client_id"/>
+                <field name="nbr_personnes"/>
+                <field name="montant_total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_reservation_form" model="ir.ui.view">
+        <field name="name">reservation.form</field>
+        <field name="model">voyages.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Réservation">
+                <sheet>
+                    <group>
+                        <field name="voyage_id"/>
+                        <field name="client_id"/>
+                        <field name="date_reservation"/>
+                        <field name="nbr_personnes"/>
+                        <field name="montant_total" readonly="1"/>
+                        <field name="state"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirmer" type="object" string="Confirmer" class="btn-primary" attrs="{'invisible': [('state', '=', 'confirmee')]}"/>
+                        <button name="action_annuler" type="object" string="Annuler" class="btn-secondary" attrs="{'invisible': [('state', '=', 'annulee')]}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

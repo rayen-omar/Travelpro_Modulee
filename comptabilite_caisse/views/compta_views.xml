@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_compta" model="ir.actions.act_window">
+        <field name="name">Comptabilité &amp; Caisse</field>
+        <field name="res_model">compta.caisse</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Vues -->
+    <record id="view_compta_tree" model="ir.ui.view">
+        <field name="name">compta.tree</field>
+        <field name="model">compta.caisse</field>
+        <field name="arch" type="xml">
+            <tree string="Comptabilité &amp; Caisse">
+                <field name="name"/>
+                <field name="montant"/>
+                <field name="type_op"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_compta_form" model="ir.ui.view">
+        <field name="name">compta.form</field>
+        <field name="model">compta.caisse</field>
+        <field name="arch" type="xml">
+            <form string="Comptabilité &amp; Caisse">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="montant"/>
+                        <field name="type_op"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Menu -->
+    <menuitem id="menu_compta_root" name="Comptabilité &amp; Caisse" action="action_compta"/>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_crmclient" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="res_model">crm.client</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Vues -->
+    <record id="view_crmclient_tree" model="ir.ui.view">
+        <field name="name">crmclient.tree</field>
+        <field name="model">crm.client</field>
+        <field name="arch" type="xml">
+            <tree string="Clients">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="telephone"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_crmclient_form" model="ir.ui.view">
+        <field name="name">crmclient.form</field>
+        <field name="model">crm.client</field>
+        <field name="arch" type="xml">
+            <form string="Client">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="telephone"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Menu -->
+    <menuitem id="menu_client_root" name="Client Manager" action="action_crmclient"/>
+</odoo>

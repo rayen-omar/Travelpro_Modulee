@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_voyages_root" name="Voyages &amp; Réservations" sequence="10"/>
+    <menuitem id="menu_voyages" name="Voyages" parent="menu_voyages_root" sequence="1" action="action_voyage"/>
+    <menuitem id="menu_reservations" name="Réservations" parent="menu_voyages_root" sequence="2" action="action_reservation"/>
+</odoo>

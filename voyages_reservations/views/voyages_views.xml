@@ -1,0 +1,59 @@
+<odoo>
+    <record id="action_voyage" model="ir.actions.act_window">
+        <field name="name">Voyages</field>
+        <field name="res_model">voyages.voyage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="view_voyage_tree" model="ir.ui.view">
+        <field name="name">voyage.tree</field>
+        <field name="model">voyages.voyage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="prix"/>
+                <field name="date_depart"/>
+                <field name="date_retour"/>
+                <field name="places_totales"/>
+                <field name="places_reservees"/>
+                <field name="places_disponibles"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_voyage_form" model="ir.ui.view">
+        <field name="name">voyage.form</field>
+        <field name="model">voyages.voyage</field>
+        <field name="arch" type="xml">
+            <form string="Voyage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="prix"/>
+                        <field name="date_depart"/>
+                        <field name="date_retour"/>
+                    </group>
+                    <group>
+                        <field name="places_totales"/>
+                        <field name="places_reservees" readonly="1"/>
+                        <field name="places_disponibles" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Réservations">
+                            <field name="reservation_ids">
+                                <tree editable="bottom">
+                                    <field name="client_id"/>
+                                    <field name="date_reservation"/>
+                                    <field name="nbr_personnes"/>
+                                    <field name="montant_total"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

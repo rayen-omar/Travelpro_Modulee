@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_achat" model="ir.actions.act_window">
+        <field name="name">Achat &amp; Approvisionnement</field>
+        <field name="res_model">achat.approvisionnement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Vues -->
+    <record id="view_achat_tree" model="ir.ui.view">
+        <field name="name">achat.tree</field>
+        <field name="model">achat.approvisionnement</field>
+        <field name="arch" type="xml">
+            <tree string="Achat &amp; Approvisionnement">
+                <field name="name"/>
+                <field name="quantite"/>
+                <field name="fournisseur"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_achat_form" model="ir.ui.view">
+        <field name="name">achat.form</field>
+        <field name="model">achat.approvisionnement</field>
+        <field name="arch" type="xml">
+            <form string="Achat &amp; Approvisionnement">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="quantite"/>
+                        <field name="fournisseur"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Menu -->
+    <menuitem id="menu_achat_root" name="Achat &amp; Approvisionnement" action="action_achat"/>
+</odoo>
