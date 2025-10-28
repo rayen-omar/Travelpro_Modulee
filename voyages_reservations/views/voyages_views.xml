@@ -28,22 +28,30 @@
             <form string="Voyage">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="prix"/>
-                        <field name="date_depart"/>
-                        <field name="date_retour"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="prix"/>
+                        </group>
+                        <group>
+                            <field name="date_depart"/>
+                            <field name="date_retour"/>
+                        </group>
                     </group>
                     <group>
-                        <field name="places_totales"/>
-                        <field name="places_reservees" readonly="1"/>
-                        <field name="places_disponibles" readonly="1"/>
+                        <group>
+                            <field name="places_totales"/>
+                        </group>
+                        <group>
+                            <field name="places_reservees" readonly="1"/>
+                            <field name="places_disponibles" readonly="1"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Réservations">
-                            <field name="reservation_ids">
-                                <tree editable="bottom">
-                                    <field name="client_id"/>
+                            <field name="reservation_ids" context="{'default_voyage_id': active_id}">
+                                <tree>
+                                    <field name="amicale_id"/>
                                     <field name="date_reservation"/>
                                     <field name="nbr_personnes"/>
                                     <field name="montant_total"/>

@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="voyage_id"/>
-                <field name="client_id"/>
+                <field name="amicale_id"/>
                 <field name="nbr_personnes"/>
                 <field name="montant_total"/>
                 <field name="state"/>
@@ -24,19 +24,50 @@
         <field name="model">voyages.reservation</field>
         <field name="arch" type="xml">
             <form string="Réservation">
+                <header>
+                    <button name="action_confirmer" 
+                            type="object" 
+                            string="Confirmer" 
+                            class="oe_highlight" 
+                            attrs="{'invisible': [('state', '!=', 'brouillon')]}"/>
+                    
+                    <button name="action_annuler" 
+                            type="object" 
+                            string="Annuler la réservation" 
+                            attrs="{'invisible': [('state', '=', 'annulee')]}"/>
+                    
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,confirmee,annulee"/>
+                </header>
+                
                 <sheet>
                     <group>
-                        <field name="voyage_id"/>
-                        <field name="client_id"/>
-                        <field name="date_reservation"/>
-                        <field name="nbr_personnes"/>
-                        <field name="montant_total" readonly="1"/>
-                        <field name="state"/>
+                        <group>
+                            <field name="voyage_id"/>
+                            <!-- ✅ PERMETTRE LA CRÉATION D'AMICALE avec context pour définir is_company=True -->
+                            <field name="amicale_id" 
+                                   context="{'default_is_company': True, 'default_company_type': 'company'}"/>
+                            <field name="date_reservation"/>
+                        </group>
+                        <group>
+                            <field name="nbr_personnes" readonly="1"/>
+                            <field name="montant_total" readonly="1"/>
+                        </group>
                     </group>
-                    <footer>
-                        <button name="action_confirmer" type="object" string="Confirmer" class="btn-primary" attrs="{'invisible': [('state', '=', 'confirmee')]}"/>
-                        <button name="action_annuler" type="object" string="Annuler" class="btn-secondary" attrs="{'invisible': [('state', '=', 'annulee')]}"/>
-                    </footer>
+                    
+                    <notebook>
+                        <page string="Membres participants">
+                            <!-- ✅ PERMETTRE LA CRÉATION DE MEMBRES avec context pour lier à l'amicale -->
+                            <field name="membres_ids" 
+                                   widget="many2many" 
+                                   context="{'default_parent_id': amicale_id, 'default_is_company': False}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

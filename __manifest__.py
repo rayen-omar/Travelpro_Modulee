@@ -9,11 +9,12 @@
     'data': [
         # Modules secondaires
 
-        'views/travel_menu.xml',
         'voyages_reservations/security/ir.model.access.csv',
         'voyages_reservations/views/voyages_views.xml',
         'voyages_reservations/views/reservations_views.xml',
         'voyages_reservations/views/menu.xml',
+        'voyages_reservations/views/voyages_views.xml',
+        
    
         
         

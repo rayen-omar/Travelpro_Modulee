@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <!-- Menu principal -->
+        <menuitem id="menu_vente_facturation_root" name="Vente &amp; Facturation" sequence="10"/>
+        
+        <!-- Action liée au modèle sale.order -->
+        <record id="action_vente_facturation" model="ir.actions.act_window">
+            <field name="name">Commandes de Vente</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Sous-menu -->
+        <menuitem id="menu_vente_facturation_orders"
+                  name="Commandes"
+                  parent="menu_vente_facturation_root"
+                  action="action_vente_facturation"
+                  sequence="20"/>
+    </data>
+</odoo>
